@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Application Specific Values -->
     <string name="app_name">Zishlist</string>
-    <string name="hello_world">Hello world!</string>
+
+    <!-- Action Bar Specific Values -->
     <string name="action_settings">Settings</string>
+
+    <!-- Main Activity Specific Values -->
+    <string name="hello_foodie">Hi Foodie! You want to eat at </string>
+    <string name="add_button">Add Wish!</string>
+    <string name="search_button">Search Zomato</string>
 
 </resources>
