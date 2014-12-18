@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 public class WishListActivity extends Activity {
@@ -12,6 +16,23 @@ public class WishListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wish_list);
+
+        // get List View Object
+        final ListView listview = (ListView) findViewById(R.id.listView);
+        String[] values = new String[] { "Android", "iPhone", "WindowsMobile"};
+
+        // add values to a list
+        final ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < values.length; i++) {
+            list.add(values[i]);
+        }
+
+        // attach list to Array Adapter and that to List View object
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                list);
+        listview.setAdapter(arrayAdapter);
     }
 
 
