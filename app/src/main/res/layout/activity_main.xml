@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:text="@string/add_button"
         android:id="@+id/addButton"
+        android:onClick="addWish"
         android:layout_below="@+id/wishInput"
         android:layout_marginTop="50dp"
         android:layout_centerVertical="true"

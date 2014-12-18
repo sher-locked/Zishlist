@@ -12,4 +12,8 @@
     <string name="add_button">Add Wish!</string>
     <string name="search_button">Search Zomato</string>
 
+    <!-- Wish List Activity Specific Values -->
+    <string name="title_activity_wish_list">Restaurants</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>

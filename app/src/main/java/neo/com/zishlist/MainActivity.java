@@ -1,17 +1,25 @@
 package neo.com.zishlist;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 
 public class MainActivity extends Activity {
+
+    /* Text Input */
+    private EditText wishText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        wishText = (EditText) findViewById(R.id.wishInput);
     }
 
 
@@ -35,5 +43,19 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Add Wish to Wish-list action
+     */
+    public void addWish(View view) {
+
+        String restaurantName = wishText.getText().toString();
+
+        Intent addWishIntent = new Intent(this, WishListActivity.class);
+        addWishIntent.putExtra("RESTAURANT_NAME", restaurantName);
+        setResult(RESULT_OK, addWishIntent);
+
+        startActivity(addWishIntent);
     }
 }
