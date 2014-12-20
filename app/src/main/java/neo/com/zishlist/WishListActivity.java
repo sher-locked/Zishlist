@@ -1,6 +1,7 @@
 package neo.com.zishlist;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,12 @@ public class WishListActivity extends Activity {
         for (int i = 0; i < values.length; i++) {
             list.add(values[i]);
         }
+
+        // add user input
+        Intent launchingIntent = getIntent();
+        String restaurantWish = launchingIntent.getStringExtra("RESTAURANT_NAME");
+
+        list.add(restaurantWish);
 
         // attach list to Array Adapter and that to List View object
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
