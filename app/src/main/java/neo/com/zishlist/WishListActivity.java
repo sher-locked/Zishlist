@@ -20,7 +20,10 @@ public class WishListActivity extends Activity {
 
         // get List View Object
         final ListView listview = (ListView) findViewById(R.id.listView);
-        String[] values = new String[] { "Android", "iPhone", "WindowsMobile"};
+        String[] values = new String[] {
+                "Church Street Social",
+                "Shiro",
+                "High Ultra Lounge" };
 
         // add values to a list
         final ArrayList<String> list = new ArrayList<String>();
