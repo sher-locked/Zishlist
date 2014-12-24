@@ -8,18 +8,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.sql.SQLException;
+
+import neo.com.zishlist.database.RestaurantDAO;
+import neo.com.zishlist.database.RestaurantDO;
+
 
 public class MainActivity extends Activity {
 
-    /* Text Input */
-    private EditText wishText;
+    /* Database Accessor */
+    private RestaurantDAO restaurantDAO;
+
+    // Wish Inputs
+    private EditText nameInput;
+    private EditText placeInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        wishText = (EditText) findViewById(R.id.wishInput);
+        nameInput = (EditText) findViewById(R.id.nameInput);
+        placeInput = (EditText) findViewById(R.id.placeInput);
     }
 
 
@@ -50,7 +60,23 @@ public class MainActivity extends Activity {
      */
     public void addWish(View view) {
 
-        String restaurantName = wishText.getText().toString();
+        String restaurantName = nameInput.getText().toString();
+        String restaurantPlace = placeInput.getText().toString();
+
+        // add to the database
+        RestaurantDO restaurantDO = new RestaurantDO();
+        restaurantDO.setName(restaurantName);
+        restaurantDO.setPlace(restaurantPlace);
+
+        // initialize database and add restaurant
+        restaurantDAO = new RestaurantDAO(this);
+        try {
+            restaurantDAO.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        restaurantDAO.createRestaurant(restaurantDO);
+        restaurantDAO.close();
 
         Intent addWishIntent = new Intent(this, WishListActivity.class);
         addWishIntent.putExtra("RESTAURANT_NAME", restaurantName);

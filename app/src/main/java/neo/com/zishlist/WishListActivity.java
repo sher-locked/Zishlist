@@ -8,10 +8,18 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import neo.com.zishlist.database.RestaurantDAO;
+import neo.com.zishlist.database.RestaurantDO;
 
 
 public class WishListActivity extends Activity {
+
+    /* Database Accessor */
+    private RestaurantDAO restaurantDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +28,21 @@ public class WishListActivity extends Activity {
 
         // get List View Object
         final ListView listview = (ListView) findViewById(R.id.listView);
-        String[] values = new String[] {
-                "Church Street Social",
-                "Shiro",
-                "High Ultra Lounge" };
 
-        // add values to a list
+        // initialize database
+        restaurantDAO = new RestaurantDAO(this);
+        try {
+            restaurantDAO.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // get restaurants from database & populate to a list
+        List<RestaurantDO> restaurantDOs = restaurantDAO.getAllRestaurants();
         final ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < values.length; i++) {
-            list.add(values[i]);
+
+        for (int i = 0; i < restaurantDOs.size(); i++) {
+            list.add(restaurantDOs.get(i).getName());
         }
 
         // add user input
