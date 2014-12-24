@@ -1,6 +1,7 @@
 package neo.com.zishlist.database;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -24,6 +25,13 @@ public class RestaurantDAO {
             MySQLiteHelper.COLUMN_NAME,
             MySQLiteHelper.COLUMN_PLACE
     };
+
+    /*
+     * Public Constructor.
+     */
+    public RestaurantDAO(Context context) {
+        dbHelper = new MySQLiteHelper(context);
+    }
 
     // database access operations
     public void open() throws SQLException {
